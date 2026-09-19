@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch Live</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://video.standard.vonage.com/v2/js/opentok.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <dialog id="joinModal">
+        <form method="dialog" id="joinForm">
+            <h2 style="margin-top:0;">Join the Stream</h2>
+            <p style="color:#aaa; font-size:14px; margin-bottom:20px;">Enter your display name to join the live chat.</p>
+            <input type="text" id="viewerName" placeholder="Your Name" required>
+            <button type="submit">Watch Live</button>
+        </form>
+    </dialog>
+
+    <div class="container">
+        <header>
+            <h1>Watching Live: <span id="displayRoomName"></span></h1>
+        </header>
+
+        <main class="video-grid">
+            <div class="video-wrapper">
+                <video id="hlsPlayer" controls autoplay style="width:100%; border-radius: 8px; background:#000; aspect-ratio: 16/9;"></video>
+                <div class="avatar-controls">
+                    <h3>Change Broadcaster's Avatar (Available when AI is active)</h3>
+                    <button class="viewer-avatar-btn" data-prompt="A highly detailed majestic lion wearing a suit" disabled>Lion Suit</button>
+                    <button class="viewer-avatar-btn" data-prompt="A futuristic robot made of glass and chrome" disabled>Glass Robot</button>
+                </div>
+            </div>
+            <div class="chat-wrapper">
+                <h2>Live Chat</h2>
+                <div id="chatHistory" class="chat-history"></div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Type a message...">
+                    <button id="sendChatBtn">Send</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="watch.js"></script>
+</body>
+</html>

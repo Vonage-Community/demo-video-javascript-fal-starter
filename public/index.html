@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Broadcaster Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://video.standard.vonage.com/v2/js/opentok.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Broadcaster Studio</h1>
+            <div class="controls">
+                <input type="text" id="roomName" value="hackbarna" placeholder="Room Name">
+                <button id="cameraBtn">Start Camera</button>
+                <button id="toggleAIBtn" disabled>Turn AI On</button>
+            </div>
+            
+            <div class="controls action-bar" style="display:none; flex-direction:column; gap:10px;" id="actionBar">
+                <div style="display:flex; gap:10px;">
+                    <button id="startBroadcastBtn">Start HLS Broadcast</button>
+                    <button id="startArchiveBtn">Start Recording</button>
+                </div>
+                
+                <div id="shareLinkContainer" style="display:none; align-items:center; gap:10px; background:#222; padding:10px; border-radius:8px;">
+                    <span style="color:#aaa;">Viewer Link:</span>
+                    <a id="shareLinkText" href="#" target="_blank" style="color:#007bff; word-break:break-all;"></a>
+                    <button id="copyLinkBtn" style="margin-left:auto;">Copy</button>
+                </div>
+
+                <div id="archiveLinkContainer" style="display:none; align-items:center; gap:15px; background:#1e4d2b; padding:10px; border-radius:8px;">
+                    <a id="archiveDownloadLink" href="#" target="_blank" style="color:#00ff88; font-weight:bold; text-decoration:none;">⬇ Download MP4 Recording</a>
+                    <span id="archiveTimer" style="color:#ffcc00; font-family:monospace; margin-left:auto;">Expires in: 10:00</span>
+                </div>
+            </div>
+            <p id="statusMsg"></p>
+        </header>
+
+        <main class="video-grid">
+            <div class="video-wrapper">
+                <h2>Your Video Feed</h2>
+                <div id="publisher" class="video-container"></div>
+                <div class="avatar-controls">
+                    <h3>Avatar Presets (Active when AI is On)</h3>
+                    <button class="avatar-btn" data-prompt="A cyberpunk hacker with glowing neon glasses" disabled>Cyberpunk<br>glasses</button>
+                    <button class="avatar-btn" data-prompt="An anime character, vibrant colors and matches the user's skin tone and hairstyle" disabled>Anime</button>
+                    <button class="avatar-btn" data-prompt="A 3D style cartoon character and matches the user's skin tone and hairstyle" disabled>3D Cartoon</button>
+                </div>
+            </div>
+            <div class="chat-wrapper">
+                <h2>Live Chat</h2>
+                <div id="chatHistory" class="chat-history"></div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Type a message...">
+                    <button id="sendChatBtn">Send</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="broadcaster.js"></script>
+</body>
+</html>
